@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Xia Wu Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Back to Home</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="index.html#projects">Portfolio</a></li>
+							<li><a href="index.html#footer">Find Me On</a></li>
+							<!-- <li><a href="generic.html">Consequat dolor</a></li>
+							<li><a href="elements.html">Elements</a></li> -->
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>Sales Dashboard</h1>
+							<span class="image main"><img src="images/sales_dashboard/dashboard.jpg" alt="" /></span>
+							<h2>Data Source</h2>
+							<p>The data source for this project is the AdventureWorks sample databases provided by Microsoft. It contains tables related to sales, customers, products, and other business entities.</p>
+							<hr/>
+							<h2>Business Request</h2>
+							<p>The goal of this project is to create a comprehensive sales report with an intuitive dashboard. The dashboard should provide:</p>
+							<ul>
+								<li>An overview of internet sales, including total sales, sales trends over time, and a comparison of actual sales against budgeted targets.</li>
+								<li>Detailed views of sales per customer and per product, allowing for analysis of top-performing customers and products.</li>
+							</ul>
+							<hr/>
+							<h2>Data Cleaning and Transformation</h2>
+							<p>The databases were accessed using SQL Server for data cleaning and transformation. Three essential dimension tables were created:one for customers, another for products, and a date table. Additionally, sales data were extracted and stored as a fact table for next step.</p>
+							<p>Below are the SQL commands for cleaning and transforming the product data. Additional SQL scripts for other necessary data can be found <a href="https://github.com/wu-wx/SalesDashboard" target="_blank">here</a>.</p>
+							<pre><code>-- Clean product table DIM_Products Table --
+SELECT 
+  p.[ProductKey], 
+  p.[ProductAlternateKey] AS ProductItemCode, 
+  p.[EnglishProductName] AS [Product Name], 
+  ps.EnglishProductSubcategoryName AS [Sub Category], -- Joined in from Sub Category Table
+  pc.EnglishProductCategoryName AS [Product Category], -- Joined in from Category Table
+  p.[Color] AS [Product Color], 
+  p.[Size] AS [Product Size], 
+  p.[ProductLine] AS [Product Line], 
+  p.[ModelName] AS [Product Model Name], 
+  p.[EnglishDescription] AS [Product Description], 
+  ISNULL (p.Status, 'Outdated') AS [Product Status] 
+FROM 
+  [AdventureWorksDW2019].[dbo].[DimProduct] AS p
+  LEFT JOIN dbo.DimProductSubcategory AS ps ON ps.ProductSubcategoryKey = p.ProductSubcategoryKey 
+  LEFT JOIN dbo.DimProductCategory AS pc ON ps.ProductCategoryKey = pc.ProductCategoryKey 
+ORDER BY 
+  p.ProductKey ASC
+</code></pre>
+							<hr/>
+							<h2>Data Modeling</h2>
+							<p>The cleaned and transformed data were then loaded into Power BI, where a data model was created. In this step the sales budgets from Excel also integrated into the data model.The screeshot below shows how the fact table is connected to other dimension tables.</p>
+							<div class="box alt">
+								<div class="row gtr-uniform">
+									<div class="col-6"><span class="image fit"><img src="images/sales_dashboard/data_model.jpg" alt="" /></span></div>
+								</div>
+							</div>
+							<hr/>
+							<h2>Dashboard Creation</h2>
+							<p>Using Power BI, a dashboard was created based on the data and data model. The dashboard encompasses key facets: a sales overview presenting internet sales with trends and budget comparisons and other two views providing in-depth insights into sales, one focusing on customer transactions and the other on product sales. </p>
+							<p>The file of Power BI can be accessed <a href="https://github.com/wu-wx/SalesDashboard/blob/63f2ce2cc0483e587479c9f1fe66ed9b29e8f4da/Sales%20Report.pbix" target="_blank"> here</a>.</p>
+							<div class="box alt">
+								<div class="row gtr-uniform">
+									<div class="col-6"><span class="image fit"><img src="images/sales_dashboard/sales_view.jpg" alt="" /></span></div>
+									<div class="col-6"><span class="image fit"><img src="images/sales_dashboard/customer_view.jpg" alt="" /></span></div>
+									<!-- <div class="col-4"><span class="image fit"><img src="images/sales_dashboard/product_view.jpg" alt="" /></span></div> -->
+								</div>
+							</div>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+						<!-- 	<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="#">
+									<div class="fields">
+										<div class="field half">
+											<input type="text" name="name" id="name" placeholder="Name" />
+										</div>
+										<div class="field half">
+											<input type="email" name="email" id="email" placeholder="Email" />
+										</div>
+										<div class="field">
+											<textarea name="message" id="message" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="primary" /></li>
+									</ul>
+								</form>
+							</section> -->
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="https://github.com/wu-wx" target="_blank" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="https://www.linkedin.com/in/xia-wu-xw/" target="_blank" class="icon brands style2 fa-linkedin-in"><span class="label">GitHub</span></a></li>
+									<!-- <li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li> -->
+								</ul>
+							</section>
+							<!-- <ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul> -->
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
