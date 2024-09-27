@@ -1,0 +1,162 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Xia Wu Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Back to Home</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="index.html#projects">Portfolio</a></li>
+							<li><a href="index.html#footer">Find Me On</a></li>
+							<!-- <li><a href="generic.html">Consequat dolor</a></li>
+							<li><a href="elements.html">Elements</a></li> -->
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>Local RAG <span style="font-size: 0.75em;">- Powered by Llama 3 8B</span></h1>
+							<h2>What is RAG?</h2>
+							<p>Retrieval-Augmented Generation (RAG) has gained significant attention with the rise of large language models (LLMs). RAG enables LLMs to access external and internal knowledge sources. It helps data professionals to retrieve relevant information from vast data sources and even summarize complex datasets into actionable knowledge.</p>
+							<hr/>
+							<h2>Key features</h2>
+							<p>This project combines Llama 3 8B with the Langchain framework to create a flexible, local solution for interacting with documents. It’s designed to help professionals efficiently retrieve and analyze document information, while maintaining data privacy by running the LLM locally.</p>
+							<p><strong>Customizable Chain Type</strong></p>
+							<p>The project allows users to choose between different chain types—Stuff, Map-Reduce, Refine, and Map-Rerank—depending on the use case. This flexibility tailors the experience to specific tasks.</p>
+							<ul>
+								<li>Stuff: Simple and ideal for small sets of short documents.</li>
+								<li>Map-Reduce: Suitable for larger documents; it combines individual outputs</li>
+								<li>Refine: Good for complex queries that require nuanced information integration.</li>
+								<li>Map-Rerank: Best when relevance ranking is critical for obtaining the best results, but can be more computationally expensive.</li>
+							</ul>
+							<div class="box alt">
+								<div class="row gtr-uniform">
+									<div class="col-6"><span class="image fit"><img src="images/llama_rag/Configuration.jpg" alt="" /></span></div>
+								</div>
+							</div>
+							<hr/>
+							<p><strong>Adjustable Number of Relevant Chunks</strong></p>
+							<p>Users can set how many chunks to retrieve, allowing them to control the amount of context the model retrieves for each query. This is crucial for balancing relevance and performance.</p>
+							<hr/>
+							<p><strong>Document Interaction</strong></p>
+							<p>Users can engage with the chatbot, named "Your Document Assistant," after loading a PDF file. The chatbot has memory capabilities, allowing it to "remember" previous queries and answers, thus enabling a continuous conversation. For users wishing to start a new conversation, there is an option to clear the conversation history and begin fresh.</p>
+							<div class="box alt">
+								<div class="row gtr-uniform">
+									<div class="col-6"><span class="image fit"><img src="images/llama_rag/Conversation.jpg" alt="" /></span></div>
+								</div>
+							</div>
+							<hr/>
+							<h2>Code Implementation</h2>
+							<p>Here’s a brief overview of the code used to implement key features within a JupyterLab environment. The full implementation can be found <a href="https://github.com/wu-wx/SalesDashboard" target="_blank">here</a>.</p>
+							<pre><code>-- Clean product table DIM_Products Table --
+SELECT 
+  p.[ProductKey], 
+  p.[ProductAlternateKey] AS ProductItemCode, 
+  p.[EnglishProductName] AS [Product Name], 
+  ps.EnglishProductSubcategoryName AS [Sub Category], -- Joined in from Sub Category Table
+  pc.EnglishProductCategoryName AS [Product Category], -- Joined in from Category Table
+  p.[Color] AS [Product Color], 
+  p.[Size] AS [Product Size], 
+  p.[ProductLine] AS [Product Line], 
+  p.[ModelName] AS [Product Model Name], 
+  p.[EnglishDescription] AS [Product Description], 
+  ISNULL (p.Status, 'Outdated') AS [Product Status] 
+FROM 
+  [AdventureWorksDW2019].[dbo].[DimProduct] AS p
+  LEFT JOIN dbo.DimProductSubcategory AS ps ON ps.ProductSubcategoryKey = p.ProductSubcategoryKey 
+  LEFT JOIN dbo.DimProductCategory AS pc ON ps.ProductCategoryKey = pc.ProductCategoryKey 
+ORDER BY 
+  p.ProductKey ASC
+</code></pre>					
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+						<!-- 	<section>
+								<h2>Get in touch</h2>
+								<form method="post" action="#">
+									<div class="fields">
+										<div class="field half">
+											<input type="text" name="name" id="name" placeholder="Name" />
+										</div>
+										<div class="field half">
+											<input type="email" name="email" id="email" placeholder="Email" />
+										</div>
+										<div class="field">
+											<textarea name="message" id="message" placeholder="Message"></textarea>
+										</div>
+									</div>
+									<ul class="actions">
+										<li><input type="submit" value="Send" class="primary" /></li>
+									</ul>
+								</form>
+							</section> -->
+							<section>
+								<h2>Follow</h2>
+								<ul class="icons">
+									<li><a href="https://github.com/wu-wx" target="_blank" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="https://www.linkedin.com/in/xia-wu-xw/" target="_blank" class="icon brands style2 fa-linkedin-in"><span class="label">GitHub</span></a></li>
+									<!-- <li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+									<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li> -->
+								</ul>
+							</section>
+							<!-- <ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul> -->
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
