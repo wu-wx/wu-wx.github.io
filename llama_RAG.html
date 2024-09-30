@@ -50,17 +50,17 @@
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
-							<h1>Local RAG <span style="font-size: 0.75em;">- Powered by Llama 3 8B</span></h1>
+							<h1>Your Document Assistant <span style="font-size: 0.75em;">- Local RAG Powered by Llama 3 8B</span></h1>
 							<h2>What is RAG?</h2>
 							<p>Retrieval-Augmented Generation (RAG) has gained significant attention with the rise of large language models (LLMs). RAG enables LLMs to access external and internal knowledge sources. It helps data professionals to retrieve relevant information from vast data sources and even summarize complex datasets into actionable knowledge.</p>
 							<hr/>
 							<h2>Key features</h2>
 							<p>This project combines Llama 3 8B with the Langchain framework to create a flexible, local solution for interacting with documents. It’s designed to help professionals efficiently retrieve and analyze document information, while maintaining data privacy by running the LLM locally.</p>
 							<p><strong>Customizable Chain Type</strong></p>
-							<p>The project allows users to choose between different chain types—Stuff, Map-Reduce, Refine, and Map-Rerank—depending on the use case. This flexibility tailors the experience to specific tasks.</p>
+							<p>The project allows users to choose between different chain types, such as <strong>stuff</strong>, <strong>map-reduce</strong>, <strong>refine</strong>, and <strong>map-rerank</strong>, depending on the use case. This flexibility tailors the experience to specific tasks.</p>
 							<ul>
 								<li>Stuff: Simple and ideal for small sets of short documents.</li>
-								<li>Map-Reduce: Suitable for larger documents; it combines individual outputs</li>
+								<li>Map-Reduce: Suitable for larger documents.</li>
 								<li>Refine: Good for complex queries that require nuanced information integration.</li>
 								<li>Map-Rerank: Best when relevance ranking is critical for obtaining the best results, but can be more computationally expensive.</li>
 							</ul>
@@ -74,7 +74,7 @@
 							<p>Users can set how many chunks to retrieve, allowing them to control the amount of context the model retrieves for each query. This is crucial for balancing relevance and performance.</p>
 							<hr/>
 							<p><strong>Document Interaction</strong></p>
-							<p>Users can engage with the chatbot, named "Your Document Assistant," after loading a PDF file. The chatbot has memory capabilities, allowing it to "remember" previous queries and answers, thus enabling a continuous conversation. For users wishing to start a new conversation, there is an option to clear the conversation history and begin fresh.</p>
+							<p>Users can interact with the chatbot, named "Your Document Assistant", after loading a PDF file. The chatbot has memory capabilities, allowing it to "remember" previous queries and answers, thus enabling a continuous conversation. For users wishing to start a new conversation, there is an option to clear the conversation history and begin fresh.</p>
 							<div class="box alt">
 								<div class="row gtr-uniform">
 									<div class="col-6"><span class="image fit"><img src="images/llama_rag/Conversation.jpg" alt="" /></span></div>
@@ -83,25 +83,21 @@
 							<hr/>
 							<h2>Code Implementation</h2>
 							<p>Here’s a brief overview of the code used to implement key features within a JupyterLab environment. The full implementation can be found <a href="https://github.com/wu-wx/SalesDashboard" target="_blank">here</a>.</p>
-							<pre><code>-- Clean product table DIM_Products Table --
-SELECT 
-  p.[ProductKey], 
-  p.[ProductAlternateKey] AS ProductItemCode, 
-  p.[EnglishProductName] AS [Product Name], 
-  ps.EnglishProductSubcategoryName AS [Sub Category], -- Joined in from Sub Category Table
-  pc.EnglishProductCategoryName AS [Product Category], -- Joined in from Category Table
-  p.[Color] AS [Product Color], 
-  p.[Size] AS [Product Size], 
-  p.[ProductLine] AS [Product Line], 
-  p.[ModelName] AS [Product Model Name], 
-  p.[EnglishDescription] AS [Product Description], 
-  ISNULL (p.Status, 'Outdated') AS [Product Status] 
-FROM 
-  [AdventureWorksDW2019].[dbo].[DimProduct] AS p
-  LEFT JOIN dbo.DimProductSubcategory AS ps ON ps.ProductSubcategoryKey = p.ProductSubcategoryKey 
-  LEFT JOIN dbo.DimProductCategory AS pc ON ps.ProductCategoryKey = pc.ProductCategoryKey 
-ORDER BY 
-  p.ProductKey ASC
+							<pre><code>def call_load_db(self, count, k, chain_type):
+    if file_input.value is None:  # check if the file is loaded
+	    return pn.pane.Markdown("Please upload a file before starting a conversation.")
+    file_input.save("temp.pdf")  # save the file
+    self.loaded_file = file_input.filename  # add file name
+    button_load.button_style = "outline"
+    #get the k and chain type values 
+    self.k_value = k
+    self.chain_type_value = chain_type
+							  
+    self.qa = load_db("temp.pdf", self.chain_type_value, self.k_value)
+    self.file_loaded = True  
+    button_load.button_style="solid"
+    self.clr_history()
+    return pn.pane.Markdown(f"Loaded File: {self.loaded_file}")
 </code></pre>					
 						</div>
 					</div>
