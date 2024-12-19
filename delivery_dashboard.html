@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Xia Wu Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><i class="fas fa-home"></i></span><span class="title">Back to Home</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="index.html#projects">Portfolio</a></li>
+							<li><a href="index.html#footer">Find Me On</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1 style="margin-bottom: 0; line-height: 1.5;">Delivery Dashboard</h1>
+							<h1 style="margin-top: 0; font-size: 1.8em; ">A Flexible Approach to Design and Screen Responsiveness</h1>
+							<div style="text-align: center;">
+								<span class="image main">
+									<img src="images/delivery_dashboard/KPI Dashboard.jpg" alt="" style="width: 75%; max-width: 100%; height: auto;" />
+								</span>
+							</div>
+							<h2>Data Source</h2>
+							<p>This project utilizes supply chain data from <a href="https://www.kaggle.com/datasets/shashwatwork/dataco-smart-supply-chain-for-big-data-analysis" target="_blank">DataCo Global</a>, which includes comprehensive records of deliveries, customers, orders, and products. </p>
+							<hr/>
+							<h2>Business Objective</h2>
+							<p>The aim of the project was to create an interactive dashboard for tracking <b>delivery KPIs</b>. This dashboard should enables users to monitor critical metrics while providing detailed insights to support data-driven decision-making.</p>
+							<ol>
+								<li>KPI Overview</li>
+								<ul>
+									<li>Tracks delivery performance metrics, including on-time delivery rates, shipping days, and comparisons between actual and planned shipping days.</li>
+									<li>Displays profit per order to evaluate financial outcomes.</li>
+								</ul>
+								<li>Detailed views</li>
+								<ul>
+									<li>Offers focused views for each KPI, helping users identify trends and areas for improvement, including delivery, order and shipping days details.</li>
+								</ul>
+							</ol>
+							<hr/>
+							<div class="row">
+                                <div class="col-7 col-12-medium">
+									<h2>Data Cleaning and Transformation</h2>
+                                    <p>The raw data, presented in tabular format, was cleaned and transformed using <strong>Python</strong>. The main task of this step is to understand the dataset, and identifies missing values or redundant columns. Unnecessary columns are removed, and a subset of relevant delivery-related columns is extracted. Finally, the cleaned data is saved to an Excel file for the next step.</p>
+									<p>The python code can be accessed on <a href="https://github.com/wu-wx/PortfolioProjects/blob/main/data%20cleaning.ipynb" target="_blank">GitHub</a></p>
+								</div>
+                                <div class="col-5 col-12-medium">
+                                    <span class="image main">
+                                        <img src="images/delivery_dashboard/DataCleaning.png" alt="" style="width: 100%; max-width: 100%; height: auto;" />
+                                    </span>
+                                </div>
+                            </div>    
+							<hr/>
+							<h2>Dashboard Creation</h2>
+							<p>The dashboard was built using <strong>Tableau</strong> and is adaptable to various screen sizes.</p>	
+							<div class="row">
+                                <div class="col-4 col-12-medium">
+									<span class="image main">
+                                        <img src="images/delivery_dashboard/Delivery.jpg" alt="" style="width: 100%; max-width: 100%; height: auto;" />
+                                    </span>
+                                </div>
+                                <div class="col-4 col-12-medium">
+                                    <span class="image main">
+                                        <img src="images/delivery_dashboard/Order.jpg" alt="" style="width: 100%; max-width: 100%; height: auto;" />
+                                    </span>
+                                </div>
+								<div class="col-4 col-12-medium">
+                                    <span class="image main">
+                                        <img src="images/delivery_dashboard/Shipment.jpg" alt="" style="width: 100%; max-width: 100%; height: auto;" />
+                                    </span>
+                                </div>
+                            </div>    
+							<hr/>
+							<h2>Dashboard Size: Optimizing for Screen Responsiveness</h2>
+							<p>Choosing the right dashboard size is crucial for user experience, especially considering the diverse range of screen sizes used by end users. Tableau provides three options for dashboard sizing: fixed size, range size, and automatic. From my experience, the <strong>automatic sizing</strong> option is the most effective choice for creating responsive dashboards.</p>
+							<p><strong>Tips for Designing Responsive Dashboards in Tableau:</strong></p>
+							<ul>
+								<li><strong>Set the Size to Automatic:</strong> This allows the dashboard to dynamically adjust to different screen dimensions, ensuring a seamless viewing experience.</li>
+								<li><strong>Use Floating Containers:</strong> Organize charts, tables, and navigation elements within floating containers. This design approach ensures that components scale and reposition appropriately as screen sizes change.</li>
+								<li><strong>Test Across Resolutions:</strong> Preview and test the dashboard on different sizes of screens to confirm a smooth experience for all end users.</li>
+								<li><strong>Leverage Padding and Margins:</strong> Use padding and margin settings to create buffers around elements, maintaining a clean appearance across screen sizes.</li>
+							</ul>
+							<p>The delivery dashboard can be accessed on <a href="https://public.tableau.com/app/profile/xia.wu/viz/DeliveryDashboardpublic_17339137131290/KPI#1" target="_blank">Tableau Public</a>.</p>
+						</div>
+					</div>
+
+				<!-- Footer -->
+				<footer id="footer">
+					<div class="inner">
+						<section>
+							<h2>Follow</h2>
+							<ul class="icons">
+								<li><a href="https://github.com/wu-wx" target="_blank" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+								<li><a href="https://www.linkedin.com/in/xia-wu-xw/" target="_blank" class="icon brands style2 fa-linkedin-in"><span class="label">GitHub</span></a></li>
+								<!-- <li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+								<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+								<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+								<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+								<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+								<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+								<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+								<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li> -->
+							</ul>
+						</section>
+					</div>
+				</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
