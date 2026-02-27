@@ -1,0 +1,180 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Xia Wu Portfolio</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="symbol"><i class="fas fa-home"></i></span><span class="title">Back to Home</span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li><a href="index.html#projects">Portfolio</a></li>
+							<li><a href="index.html#footer">Find Me On</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1 style="margin-bottom: 0; line-height: 1.5;">Why Your Delivery Arrives Late</h1>
+							<h1 style="margin-top: 0; font-size: 1.8em; ">A Data-Driven Look at Delivery Delays and How to Fix Them</h1>
+							<h2>Introduction</h2>
+							<p>Late deliveries frustrate customers and cost money. Most companies assume the problem is beyond their control. They blame the distance, third-party carriers, or the unpredictability of international logistics.</p>
+							<p>However, after analyzing more than 180,000 order records from a global e-commerce supply chain, a different pattern emerged. Most delays were not caused by external factors but by internal operational design decisions and structural mismatches between promises and capacity.</p>
+							<p>The project began with a straightforward business question:<br>
+								Can we identify which orders are at risk of delay and intervene before the problem occurs? 
+							</p>
+							<p>Rather than building a complex algorithm for its own sake, I focused on using data to support operational improvements and reduce preventable revenue loss. </p>
+							<hr/>
+							<h2>Data Scope and Analytical Approach</h2>
+							<p>The foundation of this analysis is a dataset from <a href="https://www.kaggle.com/datasets/shashwatwork/dataco-smart-supply-chain-for-big-data-analysis" target="_blank">DataCo Global</a>, a simulated but realistic supply chain environment. With over 180,000 records, the data encompasses various shipping modes, regional markets, financial metrics, and product categories. </p>
+							<p>The project followed an iterative and structured approach to ensure the results provides clear and usable insights for business decisions.
+							<ol>
+								<ul>
+									<li>I began by selecting business-relevant variables, such as shipping mode, product attributes and order characteristics. Their relationships with late delivery were validated using statistical testing</li>
+									<li>Next, I applied basic logistic regression and tested more complex methods like random forests and XGBoost. All models initially achieved a ROC-AUC of approximately 0.74. This suggested the predictive limitation wasn’t the algorithm.</li>
+									<li>I then introduced additional features based on operational logic. Order time was used to capture warehouse capacity constraints and cutoff effects. Interaction features were created, such as shipping mode paired with region, to reflect how operational factors jointly influence delivery risk.</li>
+									<li>After refining the features and removing non-informative variables, model performance improved to 0.80 ROC-AUC. This improvement confirmed that understanding the business operations was more valuable than increasing model complexity. </li>
+								</ul>
+							</ol>
+							</p>
+							<!-- <div style="text-align: center;">
+								<span class="image main">
+									<img src="images/delivery_analysis/Process.png" alt="" style="width: 60%; max-width: 100%; height: auto;" />
+								</span>
+							</div> -->
+							<div style="display: flex; justify-content: center;">
+    							<img src="images/delivery_analysis/Process.png" alt="" style="width: 60%; max-width: 100%; height: auto;" />
+							</div>
+							<hr/>
+							<h2>Key Findings</h2>
+							<ol>
+                            	<strong><li>The fast-shipping option had the worst track record</li></strong>
+								<p>
+									One key finding was the failure of premium services. Rather than receiving the highest priority and reliability, First Class shipping showed an extremely high late delivery rate, exceeding 90% in the dataset. In contrast, Standard Class shipping performed much better. Customers who chose Standard had 97% lower risk of delays compare to First Class.<br>
+									This result reframes the problem: late delivery is not primarily about “slow shipping,” but about over-promising on speed exceeding operational capacity. This can negatively affect customer satisfaction. Customers who pay extra for faster delivery are the most likely to be disappointed. 
+								</p>
+								<strong><li>Payment method mattered</li></strong>
+								<p>
+									Payment method revealed a counterintuitive pattern.<br>
+									Contrary to the assumption that manual transfers might cause delays, the data showed that Transfer orders had 34% lower risk of delay compared to other immediate payment types, such as Cash.<br>
+									However, the effect was not driven by payment processing speed alone. The highest delay risk occurred when immediate payment methods were combined with high-speed shipping promises. The interaction between payment type and shipping mode suggests that the Transfer payment method aligns better with the more reliable fulfillment cycles. 
+								</p>
+								<strong><li>Regional Vulnerabilities and Interaction Effects</li></strong>
+								<p>
+									Regional analysis showed that delay risk is rarely explained by geography alone. Certain regions, like Central Africa, were identified as high-risk areas. The strongest predictive power, however, came from interaction features between shipping mode and region. <br>
+									For example, specific high-speed shipping modes in certain regions failed to meet delivery expectations. This indicates that operational stress is localized and conditional, not uniformly distributed.
+								</p>
+								<strong><li>The Critical “Cutoff” Window</li></strong>
+								<p>
+									Order timing proved to be one of the most actionable variables.<br>
+									Delay risk did not increase gradually throughout the day. There was a clear cutoff time, especially for Same Day shipping. Orders placed after this window were significantly more likely to miss carrier dispatch windows.<br>
+									This finding suggests that many delays originate from internal warehouse timing misalignment rather than external carrier performance.
+								</p>
+							</ol>
+							<hr/>
+							<h2>Actionable Recommendations</h2>
+							<ol>
+								<strong><li>Aligning Promises with Reality</li></strong>
+								<p>
+									The failure rate of First Class shipping indicates a structural mismatch between service promises and operational capability.<br>
+									Action: Dynamically adjust the estimated delivery dates shown at checkout. Adding a one-day buffer can help manage customer expectations without increasing costs. Alternatively, implement a “Priority Fulfillment” lane in the warehouse specifically for premium orders. 
+								</p>
+								<strong><li>Targeted Regional Infrastructure Optimization</li></strong>
+								<p>
+									Persistent delays in specific regions indicated structural weakness in third-party logistics performance.<br>
+									Action: Conduct performance audits of logistics partner in high-risk regions. Where feasible, transition to stronger local carriers or extend lead times transparently for those markets.
+								</p>
+								<strong><li>Warehouse Shift Alignment</li></strong>
+								<p>
+									The cutoff effect suggests that the warehouse staffing is not aligned with when orders actually arrive. <br>
+									Action: Realign warehouse shifts to ensure sufficient labor availability before cut-off times, particularly for same-day orders. This can mean adding a second shift or staggering start times so labor availability peaks when it matters most.
+								</p>
+								<strong><li>Proactive Customer Communication</li></strong>
+								<p>
+									Transparency is a powerful tool for customer retention. <br>
+									Action: Use the predictive model to flag “high-risk” orders and trigger automated notifications before customers feel they need to complain.<br>
+									Display explicit cutoff times on the website, for example “Order before 2 PM for same-day shipping”. 
+								</p>
+							</ol>	
+							<!-- <div style="text-align: center;">
+								<span class="image main">
+									<img src="images/delivery_analysis/Interventions.png" alt="" style="width: 60%; max-width: 100%; height: auto;" />
+								</span>
+							</div> -->
+							<div style="display: flex; justify-content: center;">
+    							<img src="images/delivery_analysis/Interventions.png" alt="" style="width: 60%; max-width: 100%; height: auto;" />
+							</div>
+							<hr/>
+							<h2>Conclusion</h2>
+							<p>This analysis demonstrates that late delivery is rarely a random operational failure. It is a measurable, predictable outcome of how we design shipping modes, how we staff warehouses, and how we set expectations with customers.</p>
+							<p>By combining interpretable models with business context, we can do more than merely report what went wrong. We can redesign processes to build a more efficient supply chain. The goal is not just to ship faster, but to ship smarter.</p>
+							<hr/>
+							<p>The Python code of the analysis process can be accessed on Github.</p>
+						</div>
+					</div>
+
+				<!-- Footer -->
+				<footer id="footer">
+					<div class="inner">
+						<section>
+							<h2>Follow</h2>
+							<ul class="icons">
+								<li><a href="https://github.com/wu-wx" target="_blank" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+								<li><a href="https://www.linkedin.com/in/xia-wu-xw/" target="_blank" class="icon brands style2 fa-linkedin-in"><span class="label">GitHub</span></a></li>
+								<!-- <li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li>
+								<li><a href="#" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+								<li><a href="#" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+								<li><a href="#" class="icon brands style2 fa-dribbble"><span class="label">Dribbble</span></a></li>
+								<li><a href="#" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+								<li><a href="#" class="icon brands style2 fa-500px"><span class="label">500px</span></a></li>
+								<li><a href="#" class="icon solid style2 fa-phone"><span class="label">Phone</span></a></li>
+								<li><a href="#" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li> -->
+							</ul>
+						</section>
+					</div>
+				</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
